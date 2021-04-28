@@ -39,6 +39,8 @@ urlpatterns += [
     url(r'^admin/', admin.site.urls),
     url(r'', include('openwisp_controller.urls')),
     path('accounts/', include('openwisp_users.accounts.urls')),
+    path('api/v1/', include('openwisp_utils.api.urls')),
+    path('api/v1/pki/', include('openwisp_controller.pki.api.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
