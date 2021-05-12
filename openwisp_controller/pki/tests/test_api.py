@@ -28,16 +28,16 @@ class TestPkiApi(TestAdminMixin, TestPkiMixin, TestOrganizationMixin, TestCase):
         path = reverse('controller_pki:api_ca_list')
         data = self._get_ca_data.copy()
         with self.assertNumQueries(4):
-            response = self.client.post(path, data, content_type='application/json')
-        self.assertEqual(response.status_code, 201)
+            r = self.client.post(path, data, content_type='application/json')
+        self.assertEqual(r.status_code, 201)
         self.assertEqual(Ca.objects.count(), 1)
 
     def test_ca_list_api(self):
         self._create_ca()
         path = reverse('controller_pki:api_ca_list')
         with self.assertNumQueries(4):
-            r = self.client.get(path)
-        self.assertEqual(r.status_code, 200)
+            response = self.client.get(path)
+        self.assertEqual(response.status_code, 200)
 
     def test_ca_detail_api(self):
         pass
